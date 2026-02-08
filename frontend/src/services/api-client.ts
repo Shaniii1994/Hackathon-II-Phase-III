@@ -1,4 +1,10 @@
-import apiClient, { Task } from './api-client';
+import axios from 'axios';
+
+interface Task {
+  id: number;
+  title: string;
+  completed: boolean;
+}
 
 interface ChatMessage {
   message: string;
@@ -19,7 +25,7 @@ export class AIAgentService {
    */
   static async sendMessage(userId: string, message: string): Promise<ChatResponse> {
     try {
-      const response = await apiClient.post(`/api/${userId}/chat`, {
+      const response = await axios.post(`/api/${userId}/chat`, {
         message
       });
       
